@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tabell Lekse</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,700" rel="stylesheet">
+
+    <style>
+        html {
+            font-family: Nunito, sans-serif;
+        }
+        body {
+            background-image: url("w4.jpg");
+        }
+        h2 {
+            text-align: center;
+            border: solid 3px darkgrey;
+            margin: 10px;
+            padding: 5px;
+        }
+
+        table {
+            text-align: center;
+            left: 30px;
+
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tbody tr:nth-child(odd) {
+            background-color: white;
+        }
+
+        img {
+            position: relative;
+            border: groove 3px darkgrey;
+            box-shadow: 20px 20px 20px;
+
+        }
+        audio {
+            width: 400px;
+        }
+        table {
+            border-left: solid 4px darkgrey;
+            border-bottom: solid 4px darkgrey;
+            position: relative;
+        }
+        th {
+            background-color: #f9f9f9;
+        }
+        table td:nth-child(4),
+        table th:nth-child(4) {
+            border: 3px solid darkgrey;
+        }
+        tr:hover td {
+            background-color: lightgrey;
+        }
+        a {
+            color: black;
+        }
+        h4 {
+            text-align: center;
+            border: 4px solid lightgrey;
+            width: 110%;
+            float: inherit;
+        }
+        div {
+            position: absolute;
+            left:40%
+        }
+    </style>
+
+</head>
+<body>
+<h2>Rolling Stone Top 10 Albums</h2>
+<table align="center">
+    <thead>
+    <tr>
+        <th class="Burder">#</th>
+        <th>Artist</th>
+        <th>Original Utgivelse</th>
+        <th>MP3</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr onmouseover="visStones()">
+        <td>1</td>
+        <td><a href="Sgt%20Peppers%20Lonely%20Hearts%20Club%20Band.html">Sgt Peppers Lonely Hearts Club Band</a></td>
+        <td>The Beatles</td>
+        <td>1967</td>
+        <td><audio src="The%20Beatles%20-%20Sgt.%20Pepper's%20Lonely%20Hearts%20Club%20Band%20(Take%209%20And%20Speech).mp3" controls></audio></td>
+    </tr>
+    <tr onmouseover="visBeach()">
+        <td>2</td>
+        <td><a href="Pet%20sounds.html">Pet Sounds</a></td>
+        <td>Beach Boys</td>
+        <td>1966</td>
+        <td><audio src="Pet%20Sounds%20(Stereo)%20-%20The%20Beach%20Boys.mp3" controls></audio> </td>
+    </tr>
+    <tr onmouseover="visRevolver()">
+        <td>3</td>
+        <td><a href="Revolvo.html">The Beatles:Revolver</a></td>
+        <td>The Beatles</td>
+        <td>1966</td>
+        <td><audio src="Taxman%20-%20The%20Beatles(George%20Harrison)%20cover.mp3" controls></audio></td>
+    </tr>
+    <tr onmouseover="visHighway()">
+        <td>4</td>
+        <td><a href="61.html">Highway 61 Revisited</a></td>
+        <td>Bob Dylan</td>
+        <td>1965</td>
+        <td><audio src="Highway%2061%20-%20Bob%20Dylan.mp3" controls></audio></td>
+    </tr>
+    <tr onmouseover="visRubber()">
+        <td>5</td>
+        <td><a href="Rubber%20Soul.html">Rubber Soul</a></td>
+        <td>The Beatles</td>
+        <td>1965</td>
+        <td><audio src="Norwegian%20Wood%20This%20Bird%20Has%20Flown.mp3" controls></audio></td>
+    </tr>
+    <tr onmouseover="visMarvin()">
+        <td>6</td>
+        <td><a href="What%20is%20going%20on.html">What's Going On</a></td>
+        <td>Marvin Gaye</td>
+        <td>1971</td>
+        <td><audio src="Marvin%20Gaye%20-%20What's%20Going%20On.mp3" controls></audio></td>
+    </tr>
+    <tr onmouseover="visExile()">
+        <td>7</td>
+        <td><a href="Exile%20On%20Main%20Street.html">Exile on Main Street</a></td>
+        <td>The Rolling Stones</td>
+        <td>1972</td>
+        <td><audio src="Rolling%20Stones%20-%20Rocks%20Off%20(1972).mp3" controls></audio></td>
+    </tr>
+    <tr onmouseover="visLondon()">
+        <td>8</td>
+        <td><a href="London%20Calling.html">London Calling</a></td>
+        <td>The Clash</td>
+        <td>1979</td>
+        <td><audio src="London%20calling-The%20clash.mp3" controls></audio></td>
+    </tr>
+    <tr onmouseover="visBlonde()">
+        <td>9</td>
+        <td><a href="Blonde%20on%20Blonde.html">Blonde on Blonde</a></td>
+        <td>Bob Dylan</td>
+        <td>1966</td>
+        <td><audio src="Pledging%20my%20time.mp3" controls></audio></td>
+    </tr>
+    <tr onmouseover="visWhite()">
+        <td>10</td>
+        <td><a href="White%20Album.html">White Album</a></td>
+        <td>The Beatles</td>
+        <td>1968</td>
+        <td><audio src="The%20Beatles%20-%20While%20My%20Guitar%20Gently%20Weeps.mp3" controls></audio></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+<h4>Klikk på Album som du vil lære mer om!</h4>
+</div>
+<img id="cover" style="bottom:340px;" width="200" height="200">
+
+<script>
+    var cover = document.getElementById("cover");
+    function visStones() {
+        cover.src = "https://3.bp.blogspot.com/-etO1p25p1DU/T8PgMupMYpI/AAAAAAAADic/XCI9XigFmfc/s1600/beatles+5.jpg%3Cbr%3E";
+    }
+    function visBeach() {
+        cover.src = "http://www.billboard.com/files/media/the-beach-boys-pet-sounds-album-cover-billboard-1240.jpg"
+    }
+    function visRevolver() {
+        cover.src = "https://img.discogs.com/WpAqPtfFQP1shlj2slPzZth5jRk=/fit-in/600x599/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-2318045-1276592861.jpeg.jpg"
+    }
+    function visHighway() {
+        cover.src = "https://images-na.ssl-images-amazon.com/images/I/71kbAAdrzGL._SL1500_.jpg"
+    }
+    function visRubber() {
+        cover.src = "https://img.discogs.com/fUgSLFA04qPkOWyZMZB9bQPzOmU=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-4816760-1420395068-7023.jpeg.jpg"
+    }
+    function visMarvin() {
+        cover.src = "https://images.rapgenius.com/5cea669a2b19b4fe01f4b27b3ef58a7f.747x743x1.jpg"
+    }
+    function visExile() {
+        cover.src = "https://img.discogs.com/Bs2lp7xMF1JKDGNYNzezTI-i2-Y=/fit-in/600x607/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-375854-1449530370-7918.jpeg.jpg"
+    }
+    function visLondon() {
+        cover.src = "https://is2-ssl.mzstatic.com/image/thumb/Music/v4/66/89/b8/6689b882-8e2c-260d-1c46-864d440bade1/source/1200x630bb.jpg"
+    }
+    function visBlonde() {
+        cover.src = "http://images.genius.com/533c492d52afaf83f33e08a2cdd35450.600x600x1.jpg"
+    }
+    function visWhite() {
+       cover.src = "https://d2s36jztkuk7aw.cloudfront.net/sites/default/files/tile/image/original_442.jpg"
+    }
+</script>
+</body>
+</html>
