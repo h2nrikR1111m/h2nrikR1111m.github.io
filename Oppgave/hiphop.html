@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+        }
+        header {
+            padding: 10px;
+            background-color: #F9BE02;
+        }
+        body {
+            background-image: url("http://wallsdesk.com/wp-content/uploads/2016/03/o-NEW-YORK-CITY-WRITER-facebook.jpg");
+            background-size: cover;
+        }
+        #cb {
+            display: none;
+        }
+        header > #burger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            border: 1px solid #F53240;
+            padding: 5px;
+        }
+        header > #burger > div {
+            background-color: #F53240;
+            height: 2px;
+            transition: 0.5s;
+            padding: 1px;
+        }
+        main > #menu {
+            background-color: grey;
+            width: 400px;
+            left: -402px;
+            border: 1px solid #F9BE02;
+            top: 60px;
+            position: absolute;
+            min-height: calc(100vh - 117px);
+            transition: 0.5s;
+        }
+        main > #menu > a > div {
+            height: 120px;
+            border: 2px  solid #F9BE02;
+        }
+
+        main > #menu > a:first-child > div {
+            background-image: url("Rock6.png");
+        }
+        main > #menu > a:nth-child(2) > div {
+            background-image: url("Metal6.png");
+        }
+        main > #menu > a:nth-child(3) > div {
+            background-image: url("Pop6.png");
+        }
+        main > #menu > a:nth-child(4) > div {
+            background-image: url("Hovedside6.png");
+        }
+        main > #menu a:last-child > div {
+            background-image: url("Punk6.png");
+        }
+        #cb:checked ~ main > #menu {
+            left: 0;
+            transition: 0.8s;
+        }
+        #cb:checked ~ header > #burger > div:first-child {
+            transform: translateY(7px) rotate(45deg);
+        }
+        #cb:checked ~ header > #burger > div:last-child {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+        #cb:checked ~  header > #burger > div:nth-child(2) {
+            opacity: 0;
+        }
+        #guy {
+            color: #F9BE02;
+            text-shadow: -1px 0 1px #F53240;
+            font-size: 90px;
+            position: absolute;
+            top: 90px;
+            left: 650px;
+        }
+        #berk {
+            width: 700px;
+            height: 300px;
+            background-color: #F9BE02;
+            position: absolute;
+            left: 100px;
+            top: 300px;
+            font-size: 23px;
+            text-align: center;
+            border-radius: 25px;
+            padding: 10px;
+        }
+        #berk > p {
+            position: absolute;
+            top: 20px
+        }
+        #basd {
+            width: 290px;
+            height: 290px;
+            position: absolute;
+            left: 1100px;
+            top: 150px;
+            background-color: #F9BE02;
+            border-radius: 25px;
+        }
+        #basd > img {
+            width: 250px;
+            height: 250px;
+            border-radius: 25px;
+            position: absolute;
+            left: 20px;
+            top: 10px;
+        }
+        #basd > p {
+            position: absolute;
+            bottom: 2px;
+            text-align: center;
+            left: 80px;
+            font-size: 20px
+        }
+    </style>
+
+</head>
+
+
+<body>
+<input type="checkbox" id="cb">
+<header>
+    <label for="cb" id="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </label>
+</header>
+<main>
+    <h2 id="guy">RAP</h2>
+    <div id="berk"><p>Rapping, eller rap, er en betegnelse på en måte å bruke vokal på som inneholder
+        tekster som rimer og framføres på en bestemt rytmisk måte. Rap regnes gjerne som et av de
+        «fire elementene» av hiphop-kulturen, og rap-musikk brukes ofte synonymt med hiphop-musikk,
+        selv om rapping også blir brukt innen en rekke forskjellige musikkgenre, som for eksempel nu metal,
+        og hiphop-musikk trenger heller ikke å inneholde rap. Selv om rapping i stil skiller seg fra spoken
+        word, regnes ofte vokalist/poeter som Gil Scott-Heron og Bob Dylan som proto-rappere.
+
+        Et av hovedtrekkene ved rap er at det skal inneholde et spesielt tema, som politikk,
+        kjærlighet eller oppvekst, og holde seg til temaet gjennom hele sangen</p></div>
+    <div id="basd"><img src="https://assets.wired.com/photos/w_1720/wp-content/uploads/2015/12/Eminem_42-27383443.jpg">
+        <p>Rapper Eminem</p></div>
+    <nav id="menu">
+        <a href="Rock.html"><div></div></a>
+        <a href="metal.html"><div></div></a>
+        <a href="Pop.html"><div></div></a>
+        <a href="Hovedside.html"><div></div></a>
+        <a href="punk.html"><div></div></a>
+    </nav>
+</main>
+</body>
+</html>

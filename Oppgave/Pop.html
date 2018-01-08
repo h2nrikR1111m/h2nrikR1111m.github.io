@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet">
+
+    <title>Title</title>
+    <style>
+        @keyframes barb {
+            0% {
+                background-image: url("https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/mj-pop-art-wpap-gilang-bogy.jpg");
+            }
+            20% {
+                background-image: url("https://i.pinimg.com/736x/83/da/dc/83dadc1383d36f389c47731fbc9844e9--arte-pop-sharpie-art.jpg");
+            }
+            40% {
+                background-image: url("https://i.pinimg.com/736x/2a/70/25/2a7025d763a33beb1b31d4de4bbe3e2c--pop-art-portraits-portrait-art.jpg");
+            }
+            60% {
+                background-image: url("https://i.pinimg.com/236x/df/3e/df/df3edf6591677c7b01ad031ed9b533f9--madonna-pop-art.jpg");
+            }
+            80% {
+                background-image: url("https://www.rock.com/assets/products/57567/large/the-beatles-pop-art-warhol-micro-fleece-blanket-cfb-bea-01.jpg");
+            }
+            100% {
+                background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs04BS9oKtMLJuF0i6-uvcDmR1HOCGTovHK7POvsgAQXTp6rOC7A");
+            }
+         }
+        @keyframes perp {
+            from {
+                background-color: #D7DD35;
+            }
+            to {
+                background-color: #E42D94;
+            }
+        }
+        @keyframes purp {
+            from {
+                color: #D7DD35;
+            }
+            to {
+                color: #E42D94;
+            }
+        }
+        * {
+            margin: 0;
+        }
+        header {
+            padding: 10px;
+            background-color: #02558B;
+            border-bottom: black solid 3px;
+        }
+        body {
+            background-color: #575DA9;
+            background-size: cover;
+        }
+        #cb {
+            display: none;
+        }
+        header > #burger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            border: 1px solid #C5C1C0;
+            padding: 5px;
+        }
+        header > #burger > div {
+            background-color: #C5C1C0;
+            height: 2px;
+            transition: 0.5s;
+            padding: 1px;
+        }
+        main > #menu {
+            background-color: grey;
+            width: 400px;
+            left: -402px;
+            border: 1px solid #D7DD35;
+            top: 60px;
+            position: absolute;
+            min-height: calc(100vh - 117px);
+            transition: 0.5s;
+            z-index: 2000;
+        }
+        main > #menu > a > div {
+            height: 120px;
+            border: 2px  solid #D7DD35;
+        }
+
+        main > #menu > a:first-child > div {
+            background-image: url("Rock4.png");
+        }
+        main > #menu > a:nth-child(2) > div {
+            background-image: url("Metal4.png");
+        }
+        main > #menu > a:nth-child(3) > div {
+            background-image: url("Hovedside4.png");
+        }
+        main > #menu > a:nth-child(4) > div {
+            background-image: url("Rap4.png");
+        }
+        main > #menu a:last-child > div {
+            background-image: url("Punk4.png");
+        }
+        #cb:checked ~ main > #menu {
+            left: 0;
+            transition: 0.8s;
+        }
+        #cb:checked ~ header > #burger > div:first-child {
+            transform: translateY(7px) rotate(45deg);
+        }
+        #cb:checked ~ header > #burger > div:last-child {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+        #cb:checked ~  header > #burger > div:nth-child(2) {
+            opacity: 0;
+        }
+        #over {
+            text-align: center;
+            position: absolute;
+            width: 170px;
+            top: 63px;
+            left: 34%;
+            font-size: 79px;
+            font-family: 'Bitter', sans-serif;
+            color: #D7DD35;
+            animation: purp 4s infinite alternate;
+        }
+        #lay {
+            width: 550px;
+            right: 400px;
+            background-color: #02558B;
+            height: 230px;
+            position: absolute;
+            top: 100px;
+            border-radius: 25px;
+        }
+        #lay2 {
+            width: 570px;
+            right: 390px;
+            background-color: #D7DD35;
+            height: 250px;
+            position: absolute;
+            top: 90px;
+            animation: perp 4s infinite alternate;
+            border-radius: 25px;
+        }
+        #sad {
+            height: 280px;
+            width: 550px;
+            position: absolute;
+            bottom: 50px;
+            left: 100px;
+            animation: perp 4s infinite alternate;
+            background-color: #D7DD35;
+            border-radius: 25px;
+        }
+        main > #sad > table {
+            position: absolute;
+            bottom: 5px;
+            font-size: 25px;
+            background-color: #02558B;
+            color: #D7DD35;
+            animation: purp 4s infinite alternate;
+            width: 540px;
+            border-radius: 25px;
+            left: 5px;
+            height: 270px;
+            text-align: center;
+            font-family: 'Bitter', sans-serif;
+        }
+        #slidesho {
+            width: 280px;
+            height: 280px;
+            position: absolute;
+            right: 150px;
+            bottom: 50px;
+            background-color: #D7DD35;
+            animation: perp 4s infinite alternate;
+            border-radius: 25px;
+        }
+        #slidesho > div {
+            width: 270px;
+            height: 270px;
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            animation: barb 20s infinite alternate;
+            background-size: cover;
+            border-radius: 25px;
+        }
+        #sad > h2 {
+            position: relative;
+            bottom: 50px;
+            animation: purp 4s infinite alternate;
+        }
+    </style>
+
+</head>
+
+
+<body>
+<input type="checkbox" id="cb">
+<header>
+    <label for="cb" id="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </label>
+</header>
+<main>
+    <div id="lay2"></div>
+    <div id="lay"><h2 id="over">POP</h2></div>
+    <nav id="menu">
+        <a href="Rock.html"><div></div></a>
+        <a href="metal.html"><div></div></a>
+        <a href="Hovedside.html"><div></div></a>
+        <a href="hiphop.html"><div></div></a>
+        <a href="punk.html"><div></div></a>
+    </nav>
+    <div id="sad">
+        <h2>Top 3 Rolling Stones Pop Albums av 2017</h2>
+        <table>
+        <tr>
+            <th>Nr.</th>
+            <th>Album</th>
+            <th>Artist</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Melodrama</td>
+            <td>Lorde</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Rainbow</td>
+            <td>Kesha</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Reputation</td>
+            <td>Taylor Swift</td>
+        </tr>
+    </table></div>
+    <div id="slidesho"><div></div></div>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+        }
+        header {
+            padding: 10px;
+            background-color: black;
+        }
+        body {
+            background-color: black;
+            background-size: cover;
+        }
+        #cb {
+            display: none;
+        }
+        header > #burger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            border: 1px solid #C5C1C0;
+            padding: 5px;
+        }
+        header > #burger > div {
+            background-color: #C5C1C0;
+            height: 2px;
+            transition: 0.5s;
+            padding: 1px;
+        }
+        main > #menu {
+            background-color: grey;
+            width: 400px;
+            left: -402px;
+            border: 1px solid #1A2930;
+            top: 60px;
+            position: absolute;
+            min-height: calc(100vh - 117px);
+            transition: 0.5s;
+            z-index: 1000;
+        }
+        main > #menu > a > div {
+            height: 120px;
+            border: 2px  solid #1A2930;
+        }
+
+        main > #menu > a:first-child > div {
+            background-image: url("Rock5.png");
+        }
+        main > #menu > a:nth-child(2) > div {
+            background-image: url("Metal5.png");
+        }
+        main > #menu > a:nth-child(3) > div {
+            background-image: url("Pop5.png");
+        }
+        main > #menu > a:nth-child(4) > div {
+            background-image: url("Rap5.png");
+        }
+        main > #menu a:last-child > div {
+            background-image: url("Hovedside5.png");
+        }
+        #cb:checked ~ main > #menu {
+            left: 0;
+            transition: 0.8s;
+        }
+        #cb:checked ~ header > #burger > div:first-child {
+            transform: translateY(7px) rotate(45deg);
+        }
+        #cb:checked ~ header > #burger > div:last-child {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+        #cb:checked ~  header > #burger > div:nth-child(2) {
+            opacity: 0;
+        }
+        #gr {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            grid-gap: 0;
+            height: 300px;
+            width: 850px;
+            position: absolute;
+            bottom: 100px;
+            left: 300px;
+        }
+        #gr > div {
+            height: 150px;
+            width: 130px;
+            background-size: cover;
+            border: 2px solid white;
+            background-position: center;
+            text-align: center;
+        }
+        #gr > div:hover {
+            transform: scale(2.2);
+            transition: 1s;
+        }
+        #gr > div:first-child {
+            background-image: url("https://upload.wikimedia.org/wikipedia/en/5/55/FIDLAR-FIDLAR.jpg");
+        }
+        #gr > div:nth-child(2) {
+            background-image: url("https://upload.wikimedia.org/wikipedia/en/7/79/Sublime_Greatest_Hits.jpg");
+        }
+        #gr > div:nth-child(3) {
+            background-image: url("https://img.discogs.com/OmFBoV2iJbrKQyK4--O69K66PGo=/fit-in/600x597/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-581152-1215259912.jpeg.jpg");
+        }
+        #gr > div:nth-child(4) {
+            background-image: url("https://cps-static.rovicorp.com/3/JPG_500/MI0001/841/MI0001841105.jpg?partner=allrovi.com");
+        }
+        #gr > div:nth-child(5) {
+            background-image: url("https://consequenceofsound.files.wordpress.com/2015/06/fidlar-too.png");
+        }
+        #gr > div:nth-child(6) {
+            background-image: url("https://upload.wikimedia.org/wikipedia/en/c/cb/Streetlight_Manifesto_-_Everything_Goes_Numb.jpg");
+        }
+        #gr > div:nth-child(7) {
+            background-image: url("https://img.discogs.com/wYamdDXdS-d4TRqZK2nNU-CATx0=/fit-in/592x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-630066-1141663372.jpeg.jpg");
+        }
+        #gr > div:nth-child(8) {
+            background-image: url("data:image/png;base64,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");
+        }
+        #gr > div:nth-child(9) {
+            background-image: url("https://img.discogs.com/DKlJnhYsfcCazxxsFzYqU9YMvkU=/fit-in/600x603/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-393819-1440606636-5739.jpeg.jpg");
+        }
+        #gr > div:nth-child(10) {
+            background-image: url("https://i.ytimg.com/vi/mXt4GJ8hYqU/hqdefault.jpg");
+        }
+        #gr > div:nth-child(11) {
+            background-image: url("https://cps-static.rovicorp.com/3/JPG_500/MI0000/744/MI0000744796.jpg?partner=allrovi.com");
+        }
+        #gr > div:nth-child(12) {
+            background-image: url("https://cps-static.rovicorp.com/3/JPG_500/MI0001/642/MI0001642310.jpg?partner=allrovi.com");
+        }
+        #gr > div:nth-child(13) {
+            background-image: url("https://f4.bcbits.com/img/a0243472734_10.jpg");
+        }
+        #gr > div:nth-child(14) {
+            background-image: url("https://f4.bcbits.com/img/a1464928958_2.jpg");
+        }
+        #gr > div:nth-child(15) {
+            background-image: url("https://upload.wikimedia.org/wikipedia/en/1/19/NOFX_-_Punk_in_Drublic_cover.jpg");
+        }
+        #gr > div:last-child {
+            background-image: url("https://images-na.ssl-images-amazon.com/images/I/71ZV3GkBPCL._SL1095_.jpg");
+        }
+        #her {
+            color: white;
+            text-align: center;
+            font-size: 90px;
+            width: 320px;
+            position: absolute;
+            top: 100px;
+            left: 620px;
+            border: 2px solid white;
+            border-radius: 25px;
+        }
+        #tyr {
+            width: 600px;
+            font-size: 28px;
+            height: 100px;
+            top: 120px;
+            position: absolute;
+            left: 30px;
+            color: white;
+            text-align: center;
+        }
+        #underskrift {
+            position: absolute;
+            border-radius: 25px;
+            width: 350px;
+            font-size: 25px;
+            left: 596px;
+            top: 205px;
+            text-align: center;
+            border: 2px solid white;
+            padding: 12px;
+            color: white;
+        }
+    </style>
+
+</head>
+
+
+<body>
+<input type="checkbox" id="cb">
+<header>
+    <label for="cb" id="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </label>
+</header>
+<main>
+    <h2 id="her">PUNK</h2>
+    <h1 id="underskrift">Mine Favoritt Punk Album</h1>
+   <section id="gr">
+       <div onmouseover="TittelFid()"></div>
+       <div onmouseover="TittleSublim()"></div>
+       <div onmouseover="TittelFlag()"></div>
+       <div onmouseover="TittelDesc()"></div>
+       <div onmouseover="TittelToo()"></div>
+       <div onmouseover="TittelManifesto()"></div>
+       <div onmouseover="TittelGrow()"></div>
+       <div onmouseover="TittelIvy()"></div>
+       <div onmouseover="TittelSuici()"></div>
+       <div onmouseover="TittelVic()"></div>
+       <div onmouseover="TittelDead()"></div>
+       <div onmouseover="TittelTurbo()"></div>
+       <div onmouseover="TittelAdol()"></div>
+       <div onmouseover="TittelDayz()"></div>
+       <div onmouseover="TittelNOFX()"></div>
+       <div onmouseover="TittelBad()"></div>
+   </section>
+    <nav id="menu">
+        <a href="Rock.html"><div></div></a>
+        <a href="metal.html"><div></div></a>
+        <a href="Pop.html"><div></div></a>
+        <a href="hiphop.html"><div></div></a>
+        <a href="Hovedside.html"><div></div></a>
+    </nav>
+    <div id="tyr"></div>
+</main>
+<script>
+    function TittelFid() {
+        document.getElementById("tyr").innerHTML = 'FIDLAR - FIDLAR'
+    }
+    function TittleSublim() {
+        document.getElementById("tyr").innerHTML = 'Greatest Hits - SUBLIME'
+    }
+    function TittelFlag() {
+        document.getElementById("tyr").innerHTML = 'Damaged - Black Flag'
+    }
+    function TittelDesc() {
+        document.getElementById("tyr").innerHTML = 'Milo Goes College - Descendents'
+    }
+    function TittelToo() {
+        document.getElementById("tyr").innerHTML = 'Too - FIDLAR'
+    }
+    function TittelManifesto() {
+        document.getElementById("tyr").innerHTML = 'Everything goes Numb - Streetlight Manifesto'
+    }
+    function TittelGrow() {
+        document.getElementById("tyr").innerHTML = 'I Dont Wanna Grow Up - Descendents'
+    }
+    function TittelIvy() {
+        document.getElementById("tyr").innerHTML = 'Energy - Operation Ivy'
+    }
+    function TittelSuici() {
+        document.getElementById("tyr").innerHTML = 'Suicidal Tendencies - Suicidal Tendencies'
+    }
+    function TittelVic() {
+        document.getElementById("tyr").innerHTML = 'No Gods/No Managers - Choking Victim'
+    }
+    function TittelDead() {
+        document.getElementById("tyr").innerHTML = 'Give me convenience OR give me death - Dead Kennedys'
+    }
+    function TittelTurbo() {
+        document.getElementById("tyr").innerHTML = 'Ass Cobra - Turbonegro'
+    }
+    function TittelAdol() {
+        document.getElementById("tyr").innerHTML = 'Adolescent - Adolescent'
+    }
+    function TittelDayz() {
+        document.getElementById("tyr").innerHTML = 'Rouge Taxidermy - Dayz n Days'
+    }
+    function TittelNOFX() {
+        document.getElementById("tyr").innerHTML = 'Punk in Drublic - NOFX'
+    }
+    function TittelBad() {
+        document.getElementById("tyr").innerHTML = 'Bad Brains - Bad Brains'
+    }
+</script>
+</body>
+</html>

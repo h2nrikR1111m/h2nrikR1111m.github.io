@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded|Roboto" rel="stylesheet">
+    <title>Title</title>
+    <style>
+        @keyframes slider {
+            10% {
+                background-image: url("Rock Slides/Beatles.jpg.png");
+            }
+            20% {
+                background-image: url("Rock Slides/buddy.jpg.png");
+            }
+            30% {
+                background-image: url("Rock Slides/Elvis.jpg.png");
+            }
+            40% {
+                background-image: url("Rock Slides/guns.jpg.png");
+            }
+            50% {
+                background-image: url("Rock Slides/Hendrix.jpg.png");
+            }
+            60% {
+                background-image: url("Rock Slides/Nirvana.jpg.png");
+            }
+            70% {
+                background-image: url("Rock Slides/Pink.jpg.png");
+            }
+            80% {
+                background-image: url("Rock Slides/Rolling.jpg.png");
+            }
+            90% {
+                background-image: url("Rock Slides/Weezer.jpg.png");
+            }
+            100% {
+                background-image: url("Rock Slides/Who.jpg.png");
+            }
+        }
+        * {
+            margin: 0;
+        }
+        header {
+            padding: 10px;
+            background-color: #0A1612;
+        }
+        body {
+            background-color: #C5C1C0;
+            background-size: cover;
+        }
+        #cb {
+            display: none;
+        }
+        header > #burger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            border: 1px solid #C5C1C0;
+            padding: 5px;
+        }
+        header > #burger > div {
+            background-color: #C5C1C0;
+            height: 2px;
+            transition: 0.5s;
+            padding: 1px;
+        }
+        main > #menu {
+            background-color: #C5C1C0;
+            width: 400px;
+            left: -402px;
+            border: 1px solid #1A2930;
+            top: 60px;
+            position: absolute;
+            min-height: calc(100vh - 117px);
+            transition: 0.5s;
+            z-index: 1;
+        }
+        main > #menu > a > div {
+            height: 120px;
+            border: 2px  solid #1A2930;
+        }
+        
+        main > #menu > a:first-child > div {
+            background-image: url("Hovedside2.png");
+        }
+        main > #menu > a:nth-child(2) > div {
+            background-image: url("Metal2.png");
+        }
+        main > #menu > a:nth-child(3) > div {
+            background-image: url("Pop2.png");
+        }
+        main > #menu > a:nth-child(4) > div {
+            background-image: url("Rap2.png");
+        }
+        main > #menu a:last-child > div {
+            background-image: url("Punk2.png");
+        }
+        #cb:checked ~ main > #menu {
+            left: -3px;
+            transition: 0.8s;
+        }
+        #cb:checked ~ header > #burger > div:first-child {
+            transform: translateY(7px) rotate(45deg);
+        }
+        #cb:checked ~ header > #burger > div:last-child {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+        #cb:checked ~  header > #burger > div:nth-child(2) {
+            opacity: 0;
+        }
+        main > #over {
+            color: #1A2930;
+            font-size: 75px;
+            width: 13%;
+            text-align: center;
+            position: absolute;
+            left: 650px;
+            top: 100px;
+        }
+        main > #slideshow {
+            animation: 30s slider infinite alternate;
+            width: 280px;
+            height: 280px;
+            position: absolute;
+            border: 3px solid #1A2930;
+            right: 80px;
+            top: 100px;
+        }
+        main > #tab {
+            color: white;
+            width: 550px;
+            height: 350px;
+            position: absolute;
+            background-color: black;
+            top: 250px;
+            left: 500px;
+        }
+        tr {
+            padding: 10px;
+            background-color: #1A2930;
+            text-align: center;
+        }
+        th {
+            padding: 5px;
+            text-align: center;
+        }
+        #table {
+            position: absolute;
+            left: 635px;
+            top: 190px;
+        }
+    </style>
+
+</head>
+
+
+<body>
+<input type="checkbox" id="cb">
+<header>
+    <label for="cb" id="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </label>
+</header>
+<main>
+    <nav id="menu">
+        <a href="Hovedside.html"><div></div></a>
+        <a href="metal.html"><div></div></a>
+        <a href="Pop.html"><div></div></a>
+        <a href="hiphop.html"><div></div></a>
+        <a href="punk.html"><div></div></a>
+    </nav>
+    <h2 id="over">ROCK</h2>
+    <div id="slideshow"></div>
+    <h2 id="table">Mine Top 10 Rocke sanger</h2>
+    <table id="tab">
+        <tr>
+            <th>Nr.</th>
+            <th>Sang</th>
+            <th>Artist</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><a href="https://www.youtube.com/watch?v=gkroIXktjgE" style="color: white ">The Good Life</a></td>
+            <td>Weezer</td>
+        </tr> <tr>
+            <td>2</td>
+            <td><a href="https://www.youtube.com/watch?v=n6P0SitRwy8" style="color: white">Heart Shaped Box</a></td>
+            <td>Nirvana</td>
+        </tr> <tr>
+            <td>3</td>
+        <td><a href="https://www.youtube.com/watch?v=cu2Dsnvk6M0" style="color: white">Tired of Sex</a></td>
+            <td>Weezer</td>
+        </tr> <tr>
+            <td>4</td>
+            <td><a href="https://www.youtube.com/watch?v=fND_Y6OgsDs" style="color: white">After Hours</a></td>
+            <td>The Velvet Underground</td>
+        </tr> <tr>
+            <td>5</td>
+            <td><a href="https://www.youtube.com/watch?v=YQaCoZL04LE" style="color: white">A Portrait of </a></td>
+            <td>Sorority Noise</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td><a href="https://www.youtube.com/watch?v=kemivUKb4f4" style="color: white">Buddy Holly</a></td>
+            <td>Weezer</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td><a href="https://www.youtube.com/watch?v=E6i8x1TUGZg" style="color: white">Crawling After You</a></td>
+            <td>Bass Drum of Death</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td><a href="https://www.youtube.com/watch?v=czEjLM9b6VM" style=" color: white">Art School Wannabe</a></td>
+            <td>Sorority Noise</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td><a href="https://www.youtube.com/watch?v=MEjutUbgpH8" style="color: white">Ana Ng</a></td>
+            <td>They Might Be Giants</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td><a href="https://www.youtube.com/watch?v=1EdUjlawLJM" style="color: white">Atmosphere</a></td>
+            <td>Joy Division</td>
+        </tr>
+    </table>
+</main>
+</body>
+</html>

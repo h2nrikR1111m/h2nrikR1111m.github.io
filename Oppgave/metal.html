@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+        }
+        header {
+            padding: 10px;
+            background-color: #192231;
+        }
+        body {
+            background-color: #494E6B;
+            background-size: cover;
+        }
+        #cb {
+            display: none;
+        }
+        header > #burger {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            border: 1px solid #98878F;
+            padding: 5px;
+        }
+        header > #burger > div {
+            background-color: #98878F;
+            height: 2px;
+            transition: 0.5s;
+            padding: 1px;
+        }
+        main > #menu {
+            background-color: grey;
+            width: 400px;
+            left: -400px;
+            border: 1px solid #1A2930;
+            top: 60px;
+            position: absolute;
+            min-height: calc(100vh - 117px);
+            transition: 0.5s;
+            z-index: 2000;
+        }
+        main > #menu > a > div {
+            height: 120px;
+            border: 2px  solid #1A2930;
+        }
+
+        main > #menu > a:first-child > div {
+            background-image: url("Rock3.png");
+        }
+        main > #menu > a:nth-child(2) > div {
+            background-image: url("Hovedside3.png");
+        }
+        main > #menu > a:nth-child(3) > div {
+            background-image: url("Pop3.png");
+        }
+        main > #menu > a:nth-child(4) > div {
+            background-image: url("Rap3.png");
+        }
+        main > #menu a:last-child > div {
+            background-image: url("Punk3.png");
+        }
+        #cb:checked ~ main > #menu {
+            left: 0;
+            transition: 0.8s;
+        }
+        #cb:checked ~ header > #burger > div:first-child {
+            transform: translateY(7px) rotate(45deg);
+        }
+        #cb:checked ~ header > #burger > div:last-child {
+            transform: translateY(-6px) rotate(-45deg);
+        }
+        #cb:checked ~  header > #burger > div:nth-child(2) {
+            opacity: 0;
+        }
+        #overskrift {
+            font-size: 80px;
+            color: #98878F;
+            position: absolute;
+            left: 600px;
+            bottom: 470px;
+            width: 13%;
+            text-align: center;
+        }
+        h1 {
+            color: #98878F;
+            position: absolute;
+            text-align: center;
+            bottom: 455px;
+            left: 550px;
+            font-size: 30px;
+        }
+        #imagery {
+            display: flex;
+            margin-top: 270px;
+        }
+        #imagery > article {
+            border: 2px solid #985E6D;
+            height: 250px;
+            flex: 1;
+            transition: 0.45s;
+            background-size: cover;
+            background-position: center center;
+            opacity: 0.6;
+        }
+        #imagery > article:hover {
+            flex: 1.25;
+        }
+        #imagery > article:nth-child(1):hover {
+            transform-origin: left;
+        }
+        #imagery > article:last-child:hover {
+            transform-origin: right;
+        }
+        #imagery > article:hover {
+            flex: 2;
+            transform: scale(1.25);
+            opacity: 1;
+            z-index: 1000;
+        }
+        #imagery > article:first-child {
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5aCBt66daLjY0mnLQFalzCCEjrfEBNhk5wuttzlVGoO-bOG1i5A");
+        }
+        #imagery > article:nth-child(2) {
+            background-image: url("http://www.musiclipse.com/wp-content/uploads/2014/04/metallica-live-concert-wallpaper-james-hetfield-hd-resolution1-620x350.jpg");
+        }  
+        #imagery > article:nth-child(3) {
+            background-image: url("https://i.axs.com/2016/04/promoted-media-optimized_5723bbf8d0831.jpg");
+        }  
+        #imagery > article:nth-child(4) {
+            background-image: url("http://undergroundwebworld.org/Art2013/wackenexport.jpg");
+        }
+        #imagery > article:nth-child(5) {
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIChZIGeEidpp1Dh5mH9AsRn7-fmchdPADVkzMzvmvdQOJQHEdsQ");
+        }
+        #imagery > article:last-child {
+            background-image: url("https://www.visitoslo.com/PageFiles/2344/Inferno-solefald_LiseMetteEidet.jpg?t=ScaleToFill%7C725x360&ts=LyPZ6CagP%2Fr%2FFZy4wYMfWnOqekE%3D&pr=1");
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+<input type="checkbox" id="cb">
+<header>
+    <label for="cb" id="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </label>
+</header>
+<main>
+    <h2 id="overskrift">METAL</h2>
+    <h1>Hover over for noen kule bilder!</h1>
+    <nav id="menu">
+        <a href="Rock.html"><div></div></a>
+        <a href="Hovedside.html"><div></div></a>
+        <a href="Pop.html"><div></div></a>
+        <a href="hiphop.html"><div></div></a>
+        <a href="punk.html"><div></div></a>
+    </nav>
+    <section id="imagery">
+        <article></article>
+        <article></article>
+        <article></article>
+        <article></article>
+        <article></article>
+        <article></article>
+    </section>
+</main>
+</body>
+</html>
