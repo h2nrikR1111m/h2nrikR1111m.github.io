@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Info om bandet</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Source+Sans+Pro" rel="stylesheet">
+
+    <style>
+        @media screen and (max-width: 800px) {
+            header {
+                height: 20%;
+            }
+
+            header > #logo {
+                visibility: hidden;
+            }
+
+            #imgProfil {
+                opacity: 0;
+            }
+        }
+        html {
+            height: 100%;
+            width: 100%;
+        }
+        body {
+            background-color: rgba(0,0,0,0.5);
+            margin: 0;
+        }
+        header {
+            display: inline-block;
+            width: 97%;
+            border-bottom: solid 2px rgba(255,255,255,0.2);
+            background-image: url("bakgrunner/header background.jpg");
+            height: 15%;
+            padding: 1.5%;
+        }
+        header > a {
+            text-decoration: none;
+            color: #E2E2E2;
+            font-size: 19px;
+            margin: 10px;
+            left: 10%;
+            text-transform: uppercase;
+            position: relative;
+            text-shadow: 0 0 rgba(0,0,0,0.5);
+        }
+        header > a:hover {
+            border-bottom: solid #4486c6;
+            color: white;
+        }
+        header > #logo {
+            position: absolute;
+            transform: scale(0.7);
+            top: -2%;
+        }
+
+        #imgProfil {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid #4486c6;
+            position: absolute;
+            right: 2%;
+            top: 0.9%;
+        }
+        header > div > p {
+            color: #E2E2E2;
+            font-size: 18px;
+            position: absolute;
+            left: 87.9%;
+            top: 1%;
+            text-shadow: 0 0 rgba(0,0,0,0.5);
+            text-transform: uppercase;
+        }
+        main > img {
+            width: 500px;
+            height: 360px;
+            border: 2px solid black;
+            left: 60%;
+            position: relative;
+        }
+        main > h1 {
+            position: relative;
+            left: 5%;
+            font-family: 'Roboto Slab', serif;
+            font-size: 40px;
+            width: 30%;
+            bottom: 20px;
+            border-bottom: 2px solid black;
+        }
+        main > div {
+            background-color: white;
+            position: relative;
+            width: 55%;
+            border: 4px solid black;
+            left: 2%;
+            bottom: 410px;
+        }
+        main > div > p{
+            position: relative;
+            font-size: 25px;
+            left: 4%;
+            font-family: 'Roboto Slab', serif;
+        }
+        main > div > ol {
+            position: relative;
+            font-size: 25px;
+            right: 1%;
+            font-family: "Roboto Slab", serif;
+        }
+        main {
+            height: 540px;
+        }
+
+    </style>
+
+</head>
+<body>
+<header>
+    <img id="logo" src="iconer/Logo.png">
+    <a href="forside.html">Forside</a>
+    <a href="Directory.html">Alle bandene</a>
+    <a href="Chat.html">Chat</a>
+    <a href="MusikkNoSpot.html">MusikkNO Spotify</a>
+    <a href="#">Mest Populære Band</a>
+    <a href="OmOss.html">Om Oss</a>
+    <div id="info-cont">
+        <p id="Velkommen"></p>
+        <img alt="profilbilde" id="imgProfil" src="iconer/default.jpg">
+    </div>
+</header>
+
+    <main id="main">
+
+    </main>
+
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+            apiKey: "AIzaSyC3GXrGprlIubhsQ3HaRGY5GSDLOGH8Rw0",
+            authDomain: "skole-prosje.firebaseapp.com",
+            databaseURL: "https://skole-prosje.firebaseio.com",
+            projectId: "skole-prosje",
+            storageBucket: "skole-prosje.appspot.com",
+            messagingSenderId: "1033726938911"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+<script type="text/javascript">
+    initApp = function() {
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                // User is signed in.
+                var displayName = user.displayName;
+                var email = user.email;
+                var emailVerified = user.emailVerified;
+                var photoURL = user.photoURL;
+                var uid = user.uid;
+                var phoneNumber = user.phoneNumber;
+                var providerData = user.providerData;
+                user.getIdToken().then(function(accessToken) {
+
+                    const imgProfil = document.getElementById("imgProfil");
+
+
+                    imgProfil.src = photoURL;
+
+                    const Velkommen = document.getElementById("Velkommen");
+
+                    Velkommen.textContent = displayName
+
+                });
+            } else {
+                // User is signed out.
+                document.location.href="loginpage.html";
+            }
+        }, function(error) {
+            console.log(error);
+        });
+    };
+
+    window.addEventListener('load', function() {
+        initApp()
+    });
+</script>
+
+    <script>
+
+        const db = firebase.database();
+        const bandene = db.ref("Band");
+
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var id = url.searchParams.get("id");
+
+        const main = document.getElementById("main");
+
+        const bandet = bandene.child(id);
+
+        function visBand(snap) {
+            const band = snap.val();
+            main.innerHTML = `
+                <h1>${band.Navn}</h1>
+                <img src="${band.Bilde}">
+                <div>
+                <p>Stiftet: ${band.stiftet}</p>
+                <p>Sjanger: ${band.Sjanger}</p>
+                <p>Aktive: ${band.aktive}</p>
+                <ol>Medlemmer: ${band.Medlemmer}</ol>
+                <ol>Tidligere Medlemmer: ${band.TidligereMedlemmer}</ol>
+                <ol>Album: ${band.Album}</ol>
+                <p>Plateselskap: ${band.Plateselskap}</p>
+                </div>
+            `;
+        }
+
+        bandet.on("value", visBand);
+
+    </script>
+
+
+    </body>
+</html>

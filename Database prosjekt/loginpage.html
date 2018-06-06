@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Logg Inn</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <style>
+        h1 {
+            font-family: 'Source Sans Pro', sans-serif;
+            text-align: center;
+            font-size: 46px;
+            top: 120px;
+            position: relative;
+            border-bottom: 2px solid black;
+            width: 40%;
+            left: 30%;
+        }
+        #farm {
+            position: relative;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 19px;
+            left: 34%;
+            padding: 10px;
+            width: 30%;
+            text-align: center;
+            top: 200px;
+        }
+        #firebaseui-auth-container {
+            position: relative;
+            top: 150px;
+            transform: scale(1.2);
+            color: black;
+
+        }
+
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyC3GXrGprlIubhsQ3HaRGY5GSDLOGH8Rw0",
+            authDomain: "skole-prosje.firebaseapp.com",
+            databaseURL: "https://skole-prosje.firebaseio.com",
+            projectId: "skole-prosje",
+            storageBucket: "skole-prosje.appspot.com",
+            messagingSenderId: "1033726938911"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.0.0/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.0.0/firebaseui.css" />
+    <script type="text/javascript">
+        // FirebaseUI config.
+        var uiConfig = {
+            signInSuccessUrl: 'forside.html',
+            signInOptions: [
+                // Leave the lines as is for the providers you want to offer your users.
+                firebase.auth.GoogleAuthProvider.PROVIDER_ID
+            ],
+            // Terms of service url.
+            tosUrl: '<your-tos-url>'
+        };
+
+        // Initialize the FirebaseUI Widget using Firebase.
+        var ui = new firebaseui.auth.AuthUI(firebase.auth());
+        // The start method will wait until the DOM is loaded.
+        ui.start('#firebaseui-auth-container', uiConfig);
+    </script>
+</head>
+<body>
+<!-- The surrounding HTML is left untouched by FirebaseUI.
+     Your app may use that space for branding, controls and other customizations.-->
+<h1>Velkommen til MusikkNo</h1>
+<div id="firebaseui-auth-container"></div>
+
+<p id="farm">Har du ikke en Google Bruker?
+    <a href="https://accounts.google.com/signup/v2/webcreateaccount?hl=nn&flowName=GlifWebSignIn&flowEntry=SignUp">Registrer deg!</a>
+</p>
+</body>
+</html>

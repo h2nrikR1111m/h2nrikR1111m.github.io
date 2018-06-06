@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <style>
+        @media screen and (max-width: 800px) {
+            header {
+                height: 20%;
+            }
+            header > #logo {
+                visibility: hidden;
+            }
+            #imgProfil {
+                opacity: 0;
+            }
+        }
+        html {
+            height: 100%;
+            width: 100%;
+        }
+        body {
+            margin: 0;
+            background-color: rgba(0,0,0,0.5);
+        }
+        header {
+        display: inline-block;
+        width: 97%;
+        border-bottom: solid 2px rgba(255,255,255,0.2);
+        background-image: url("bakgrunner/header background.jpg");
+        height: 15%;
+        padding: 1.5%;
+    }
+    header > a {
+        text-decoration: none;
+        color: #E2E2E2;
+        font-size: 19px;
+        margin: 10px;
+        left: 10%;
+        text-transform: uppercase;
+        position: relative;
+        text-shadow: 0 0 rgba(0,0,0,0.5);
+    }
+    header > a:hover {
+        border-bottom: solid #4486c6;
+        color: white;
+    }
+    header > #logo {
+        position: absolute;
+        transform: scale(0.7);
+        top: -2%;
+    }
+
+    #imgProfil {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 3px solid #4486c6;
+        position: absolute;
+        right: 2%;
+        top: 0.9%;
+    }
+    header > div > p {
+        color: #E2E2E2;
+        font-size: 18px;
+        position: absolute;
+        left: 87.9%;
+        top: 1%;
+        text-shadow: 0 0 rgba(0,0,0,0.5);
+        text-transform: uppercase;
+    }
+    #foot > #minMelding {
+        position: absolute;
+        left: 30%;
+        font-size: 50px;
+        width: 40%;
+        z-index: 1000;
+        bottom: 0;
+        height: 100px;
+        outline: none;
+        border: solid black;
+        border-width: 5px 5px 0 5px;
+    }
+    #foot {
+        background-image:url("bakgrunner/header background.jpg");
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        height: 120px;
+    }
+    #alleMeldinger {
+        text-align: center;
+        font-size: 16px;
+    }
+    #alleMeldinger > p{
+        width: 20%;
+        height: 50px;
+        left: 42%;
+        position: relative;
+        border: 2px solid black;
+        background-color: lightgrey;
+    }
+    #alleMeldinger > div {
+        text-transform: uppercase;
+        position: relative;
+        right: 11%;
+        top: 50px;
+    }
+    </style>
+
+</head>
+<body>
+<header>
+    <img id="logo" src="iconer/Logo.png">
+    <a href="#">Forside</a>
+    <a href="Directory.html">Alle bandene</a>
+    <a href="Chat.html">Chat</a>
+    <a href="MusikkNoSpot.html">MusikkNO Spotify</a>
+    <a href="#">Mest Populære Band</a>
+    <a href="OmOss.html">Om Oss</a>
+    <div id="info-cont">
+        <p id="Velkommen"></p>
+        <img alt="profilbilde" id="imgProfil" src="iconer/default.jpg">
+    </div>
+</header>
+<div id="foot"><input placeholder="Skriv en melding her!" type="text" id="minMelding"></div>
+<div id="alleMeldinger"></div>
+
+<script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyC3GXrGprlIubhsQ3HaRGY5GSDLOGH8Rw0",
+        authDomain: "skole-prosje.firebaseapp.com",
+        databaseURL: "https://skole-prosje.firebaseio.com",
+        projectId: "skole-prosje",
+        storageBucket: "skole-prosje.appspot.com",
+        messagingSenderId: "1033726938911"
+    };
+    firebase.initializeApp(config);
+</script>
+<script type="text/javascript">
+    initApp = function() {
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                // User is signed in.
+                var displayName = user.displayName;
+                var email = user.email;
+                var emailVerified = user.emailVerified;
+                var photoURL = user.photoURL;
+                var uid = user.uid;
+                var phoneNumber = user.phoneNumber;
+                var providerData = user.providerData;
+                user.getIdToken().then(function(accessToken) {
+
+                    const imgProfil = document.getElementById("imgProfil");
+
+
+                    imgProfil.src = photoURL;
+
+                    let db = firebase.database();
+                    let meldinger = db.ref("meldinger");
+
+                    let minMelding = document.getElementById("minMelding");
+                    let alleMeldinger = document.getElementById("alleMeldinger");
+
+                    function lagreMelding() {
+                        meldinger.push(minMelding.value);
+                        minMelding.value = "";
+                    }
+
+                    function visMelding(snap) {
+                        alleMeldinger.innerHTML += "<div>" + displayName + ":" + "</div>" + "<p>" + snap.val() + "</p>";
+                    }
+
+                    minMelding.onchange = lagreMelding;
+                    meldinger.on("child_added", visMelding);
+
+                });
+            } else {
+                // User is signed out.
+                document.location.href="loginpage.html";
+            }
+        }, function(error) {
+            console.log(error);
+        });
+    };
+
+    window.addEventListener('load', function() {
+        initApp()
+    });
+</script>
+</body>
+</html>
