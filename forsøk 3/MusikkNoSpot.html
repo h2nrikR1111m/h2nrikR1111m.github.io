@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Spotify</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab|Source+Sans+Pro" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    <style>
+        @media screen and (max-width: 800px) {
+            header {
+                height: 20%;
+            }
+
+            header > #logo {
+                visibility: hidden;
+            }
+
+            #imgProfil {
+                opacity: 0;
+            }
+        }
+        html {
+            height: 100%;
+            width: 100%;
+        }
+        body {
+            background-color: rgba(0,0,0,0.5);
+            margin: 0;
+        }
+        header {
+            display: inline-block;
+            width: 97%;
+            border-bottom: solid 2px rgba(255,255,255,0.2);
+            background-image: url("bakgrunner/header background2.jpg");
+            height: 15%;
+            padding: 1.5%;
+        }
+        header > a {
+            text-decoration: none;
+            color: #E2E2E2;
+            font-size: 19px;
+            margin: 10px;
+            left: 10%;
+            text-transform: uppercase;
+            position: relative;
+            text-shadow: 0 0 rgba(0,0,0,0.5);
+        }
+        header > a:hover {
+            border-bottom: solid #4486c6;
+            color: white;
+        }
+        header > #logo {
+            position: absolute;
+            transform: scale(0.7);
+            top: -2%;
+        }
+
+        #imgProfil {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid #4486c6;
+            position: absolute;
+            right: 2%;
+            top: 0.9%;
+        }
+        header > div > p {
+            color: #E2E2E2;
+            font-size: 18px;
+            position: absolute;
+            left: 87.9%;
+            top: 1%;
+            text-shadow: 0 0 rgba(0,0,0,0.5);
+            text-transform: uppercase;
+        }
+        main > h2 {
+            color: white;
+            border-bottom: solid 4px white;
+            font-family: 'Merriweather', serif;
+            font-size: 35px;
+            width: 45%;
+            text-align: center;
+            position: absolute;
+            left: 30%;
+            z-index: 1000;
+            top: 40px;
+        }
+        iframe {
+            position: absolute;
+            width: 100%;
+            height: 89.8%;
+        }
+    </style>
+    <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyC3GXrGprlIubhsQ3HaRGY5GSDLOGH8Rw0",
+            authDomain: "skole-prosje.firebaseapp.com",
+            databaseURL: "https://skole-prosje.firebaseio.com",
+            projectId: "skole-prosje",
+            storageBucket: "skole-prosje.appspot.com",
+            messagingSenderId: "1033726938911"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <script type="text/javascript">
+        initApp = function() {
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                    // User is signed in.
+                    var displayName = user.displayName;
+                    var email = user.email;
+                    var emailVerified = user.emailVerified;
+                    var photoURL = user.photoURL;
+                    var uid = user.uid;
+                    var phoneNumber = user.phoneNumber;
+                    var providerData = user.providerData;
+                    user.getIdToken().then(function(accessToken) {
+
+                        const imgProfil = document.getElementById("imgProfil");
+
+
+                        imgProfil.src = photoURL;
+
+                        const Velkommen = document.getElementById("Velkommen");
+
+                        Velkommen.textContent = displayName
+
+                    });
+                } else {
+                    // User is signed out.
+                    document.location.href="loginpage.html";
+                }
+            }, function(error) {
+                console.log(error);
+            });
+        };
+
+        window.addEventListener('load', function() {
+            initApp()
+        });
+    </script>
+</head>
+<body>
+<header>
+    <img id="logo" src="iconer/Logo.png">
+    <a href="forside.html">Forside</a>
+    <a href="Directory.html">Alle bandene</a>
+    <a href="Chat.html">Chat</a>
+    <a href="MusikkNoSpot.html">MusikkNO Spotify</a>
+    <a href="#">Mest Populære Band</a>
+    <a href="OmOss.html">Om Oss</a>
+    <div id="info-cont">
+        <p id="Velkommen"></p>
+        <img alt="profilbilde" id="imgProfil" src="iconer/default.jpg">
+    </div>
+</header>
+<main>
+    <h2>De beste sangene fra MusikkNO</h2>
+    <div id="sign-in-status"></div>
+    <div id="sign-in"></div>
+    <div id="account-details"></div>
+    <iframe src="https://open.spotify.com/embed/user/bonoz1/playlist/3KE5AZ1fQBMBcRCRaSWT0V" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+</main>
+</body>
+</html>

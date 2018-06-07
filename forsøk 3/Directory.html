@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Bands</title>
+    <style>
+        @media screen and (max-width: 800px) {
+            header {
+                height: 20%;
+            }
+
+            header > #logo {
+                visibility: hidden;
+            }
+
+            #imgProfil {
+                opacity: 0;
+            }
+        }
+        html {
+            height: 100%;
+            width: 100%;
+        }
+        body {
+            background-color: rgba(0,0,0,0.5);
+            margin: 0;
+        }
+        header {
+            display: inline-block;
+            width: 97%;
+            border-bottom: solid 2px rgba(255,255,255,0.2);
+            background-image: url("bakgrunner/header background2.jpg");
+            height: 15%;
+            padding: 1.5%;
+        }
+        header > a {
+            text-decoration: none;
+            color: #E2E2E2;
+            font-size: 19px;
+            margin: 10px;
+            left: 10%;
+            text-transform: uppercase;
+            position: relative;
+            text-shadow: 0 0 rgba(0,0,0,0.5);
+        }
+        header > a:hover {
+            border-bottom: solid #4486c6;
+            color: white;
+        }
+        header > #logo {
+            position: absolute;
+            transform: scale(0.7);
+            top: -2%;
+        }
+
+        #imgProfil {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid #4486c6;
+            position: absolute;
+            right: 2%;
+            top: 0.9%;
+        }
+        header > div > p {
+            color: #E2E2E2;
+            font-size: 18px;
+            position: absolute;
+            left: 87.9%;
+            top: 1%;
+            text-shadow: 0 0 rgba(0,0,0,0.5);
+            text-transform: uppercase;
+        }
+        main {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 20px;
+            left: 12%;
+            top: 12%;
+            position: absolute;
+        }
+        main > div {
+            background-color: darkslategrey;
+            border-radius: 25%;
+            width: 320px;
+            z-index: 1000;
+        }
+        main > div > h1 {
+            text-align: center;
+            border-bottom: 2px solid black;
+            width: 260px;
+            position: relative;
+            left: 10%;
+        }
+        main > div > a {
+            position: relative;
+            color: black;
+            top: 150px;
+            text-align: center;
+            left: 90px;
+        }
+        main > div > img {
+            width: 290px;
+            height: 160px;
+            position: relative;
+            left: 5%;
+            bottom: 30px;
+            border-radius: 25%;
+            opacity: 0.5;
+        }
+        main > div > img:hover {
+            opacity: 1;
+        }
+
+    </style>
+
+</head>
+<body>
+<header>
+    <img id="logo" src="iconer/Logo.png">
+    <a href="forside.html">Forside</a>
+    <a href="Directory.html">Alle bandene</a>
+    <a href="Chat.html">Chat</a>
+    <a href="MusikkNoSpot.html">MusikkNO Spotify</a>
+    <a href="#">Mest Populære Band</a>
+    <a href="OmOss.html">Om Oss</a>
+    <div id="info-cont">
+        <p id="Velkommen"></p>
+        <img alt="profilbilde" id="imgProfil" src="iconer/default.jpg">
+    </div>
+</header>
+
+<main id="main"></main>
+
+
+
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyC3GXrGprlIubhsQ3HaRGY5GSDLOGH8Rw0",
+        authDomain: "skole-prosje.firebaseapp.com",
+        databaseURL: "https://skole-prosje.firebaseio.com",
+        projectId: "skole-prosje",
+        storageBucket: "skole-prosje.appspot.com",
+        messagingSenderId: "1033726938911"
+    };
+    firebase.initializeApp(config);
+</script>
+
+<script type="text/javascript">
+    initApp = function() {
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                // User is signed in.
+                var displayName = user.displayName;
+                var email = user.email;
+                var emailVerified = user.emailVerified;
+                var photoURL = user.photoURL;
+                var uid = user.uid;
+                var phoneNumber = user.phoneNumber;
+                var providerData = user.providerData;
+                user.getIdToken().then(function(accessToken) {
+
+                    const imgProfil = document.getElementById("imgProfil");
+
+
+                    imgProfil.src = photoURL;
+
+                    const Velkommen = document.getElementById("Velkommen");
+
+                    Velkommen.textContent = displayName
+
+                });
+            } else {
+                // User is signed out.
+                document.location.href="loginpage.html";
+            }
+        }, function(error) {
+            console.log(error);
+        });
+    };
+
+    window.addEventListener('load', function() {
+        initApp()
+    });
+</script>
+
+<script>
+
+    const db = firebase.database();
+    const bandene = db.ref("Band");
+
+    const main = document.getElementById("main");
+
+    function visBand(snap){
+        const key = snap.key;
+        const band = snap.val();
+
+        main.innerHTML += `
+                <div>
+                <h1>${band.Navn}</h1>
+                <a href="detaljer.html?id=${key}">Les mer om ${band.Navn}</a>
+                <img src="${band.Bilde}">
+                </div>
+            `;
+    }
+
+    bandene.on("child_added", visBand);
+
+</script>
+</body>
+</html>
