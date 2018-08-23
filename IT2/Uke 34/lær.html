@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>lær</title>
+    <style>
+        body {
+            background-color: whitesmoke;
+            font-family: Helvetica, sans-serif;
+        }
+        p {
+            color:dimgrey;
+        }
+        img {
+            width: 600px;
+            height: 400px;
+        }
+    </style>
+
+</head>
+<body>
+
+<h1>Min første nettside</h1>
+
+    <article>
+        <p id="hovedAvsnittet">Dette kommer på nettsiden</p>
+        <img id="naturbilde" src="natur_5.jpg">
+    </article>
+
+    <script>
+        document.getElementById("naturbilde").src = "natur_2.jpg";
+        document.getElementById("hovedAvsnittet").innerHTML = "Testing, testing";
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>anirep</title>
+    <style>
+        @keyframes cubemove {
+            0% {
+                top: 10px;
+                left: 20px;
+            }
+            20% {
+                top: 100px;
+                left: 20px;
+            }
+            40% {
+                top: 100px;
+                left: 100px;
+            }
+            60% {
+                top: 200px;
+                left: 100px;
+            }
+            80% {
+                top: 200px;
+                left: 200px;
+            }
+            100% {
+                top: 300px;
+                left: 200px;
+            }
+        }
+        @keyframes cuberotate {
+            from {
+                transform: rotate(0);
+                background-color: blue;
+            }
+            to {
+                transform: rotate(360deg);
+                background-color: dodgerblue;
+            }
+
+        }
+        #cube {
+            animation: cubemove 10s infinite ;
+            background-color: red;
+            border: black 2px solid;
+            width: 70px;
+            height: 70px;
+            position: absolute;
+        }
+        #cube2 {
+            animation: cuberotate 1s infinite alternate linear;
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            left: 600px;
+            top: 100px;
+        }
+    </style>
+
+</head>
+<body>
+<div id="cube"></div>
+<div id="cube2"></div>
+</body>
+</html>
