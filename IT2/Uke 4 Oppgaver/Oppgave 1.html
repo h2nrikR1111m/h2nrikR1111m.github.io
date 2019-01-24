@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jeg trenger hjelp app</title>
+    <style>
+        ::placeholder {
+            color: #4486c6;
+            font-weight: bold;
+        }
+        #InpNavn {
+            position: absolute;
+            left: 290px;
+            top: 130px;
+            height: 50px;
+            width: 600px;
+            color: #4486c6;
+            font-size: 20px;
+            text-align: center;
+            border: 2px solid forestgreen;
+        }
+        #InpProb {
+            position: absolute;
+            top: 220px;
+            left: 290px;
+            width: 600px;
+            text-decoration: cornflowerblue;
+            height: 300px;
+            text-align: center;
+            font-size: 22px;
+            border: 2px solid forestgreen;
+        }
+        #h2 {
+            position: absolute;
+            left: 390px;
+            top: -10px;
+            font-size: 50px;
+        }
+        #Knapp {
+            position: absolute;
+            background-color: white;
+            border: forestgreen 2px solid;
+            border-radius: 10%;
+            bottom: 10px;
+            left: 800px;
+            height: 70px;
+            font-size: 22px;
+            width: 100px;
+        }
+        #Knapp:hover {
+            border: solid 2px darkolivegreen;
+            background-color: ghostwhite;
+        }
+        #svar {
+            border: 2px solid black;
+            position: absolute;
+            width: 300px;
+               height: 600px;
+            left: 1000px;
+            box-shadow: dimgrey 2px 1px 2px;
+        }
+        input:focus {
+            outline: none !important;
+        }
+    </style>
+
+
+</head>
+<body>
+<h2 id="h2">Trenger du hjelp?</h2>
+
+    <input placeholder="Navn" id="InpNavn">
+    <input placeholder="Ditt Problem" id="InpProb">
+    <button id="Knapp">Ok</button>
+    <div id="svar"></div>
+
+
+    <script>
+
+        let InpNavn = document.getElementById("InpNavn");
+        let InpProb = document.getElementById("InpProb");
+        let Knapp = document.getElementById("Knapp");
+        let svar = document.getElementById("svar");
+
+        Knapp.onclick = function () {
+            svar.innerHTML = InpNavn.value + ": " + InpProb.value;
+            InpNavn.value = "";
+            InpProb.value = "";
+        };
+    </script>
+</body>
+</html>
